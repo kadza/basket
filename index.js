@@ -1,6 +1,4 @@
 
-import players from "./players.json" assert { type: 'json' };
-
 const createPlayersTable = (players) => {
   var table = document.createElement("table");
   var row = table.insertRow(-1);
@@ -88,13 +86,6 @@ const pickTeams = (players) => {
     return sum / group.length;
   });
 
-  // print the results in a table format
-  console.log("Group | Average Grade | Players");
-  console.log("------|---------------|--------");
-  for (let i = 0; i < groups.length; i++) {
-    console.log(`${i + 1}     | ${avgGrades[i].toFixed(2)}     | ${groups[i].map(player => player.id).join(", ")}`);
-  }
-
   // return groups with avg rating and all players with their rating
   return groups.map((group, i) => {
     return {
@@ -111,6 +102,9 @@ export const generateTeams = () => {
   const teams = pickTeams(playersPlaying);
   createTeamsTable(teams);
 }
+
+// async fetch players from json file
+const players = await fetch("players.json").then(response => response.json());
 
 createPlayersTable(players);
 //on select all button click select all checkboxes
