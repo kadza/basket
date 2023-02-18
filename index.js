@@ -29,7 +29,6 @@ const createPlayersTable = (players) => {
 }
 
 const createTeamsTable = (teams) => {
-  // create table with teams with ratings and players with their rating
   var table = document.createElement("table");
   var row = table.insertRow(-1);
   var headerCell = document.createElement("TH");
@@ -55,51 +54,55 @@ const createTeamsTable = (teams) => {
   dvTable.appendChild(table);
 }
 
-const pickTeams = (players) => {
-  // sort players in descending order by their rating
-  players.sort((a, b) => b.rating - a.rating);
+function createGroups1(players) {
+  const playersSorted = players.sort((a, b) => b.rating - a.rating);
 
-  // divide players into 4 groups of 3 players such that the average ratings are as close as possible
-  let groups = [[], [], [], []];
-  let avg = players.reduce((sum, player) => sum + player.rating, 0) / 12;
+  const group1 = [];
+  const group2 = [];
+  const group3 = [];
+  const group4 = [];
 
-  for (let i = 0; i < players.length;) {
-    for (let j = 0; j < 4; j++) {
-      if (groups[j].length < 3) {
-        groups[j].push(players[i++]);
+  for (let i = 0; i < playersSorted.length; i++) {
+    const minNumberOfPlayersInGroup = Math.min(group1.length, group2.length, group3.length, group4.length);
+    const groups = [group1, group2, group3, group4].filter(group => group.length < minNumberOfPlayersInGroup + 1);
+
+    const group = groups
+      .sort((a, b) => {
+        const avgA = (a.length > 0) ? a.reduce((acc, curr) => acc + curr.rating, 0) / a.length : 0;
+        const avgB = (b.length > 0) ? b.reduce((acc, curr) => acc + curr.rating, 0) / b.length : 0;
+        return avgA - avgB;
       }
-    }
+      )[0];
 
-    groups.sort((a, b) => {
-      let diffA = Math.abs(a.reduce((sum, player) => sum + player.rating, 0) / a.length - avg);
-      let diffB = Math.abs(b.reduce((sum, player) => sum + player.rating, 0) / b.length - avg);
-      return diffA - diffB;
-    });
+    group.push(playersSorted[i]);
   }
 
-  // calculate the average rating for each group
-  let avgGrades = groups.map(group => {
-    let sum = 0;
-    for (let player of group) {
-      sum += player.rating;
-    }
-    return sum / group.length;
-  });
-
-  // return groups with avg rating and all players with their rating
-  return groups.map((group, i) => {
+  return [group1, group2, group3, group4].map(group => {
     return {
-      avgRating: avgGrades[i],
+      avgRating: group.reduce((acc, curr) => acc + curr.rating, 0) / group.length,
       players: group
     }
   }
   );
-
 }
+
+function createGroups(players) {
+  const playersSorted = players.sort((a, b) => b.rating - a.rating);
+  // crate 4 groups which total amount of players is equal to players.length
+
+
+  // fill groups with players
+  for (let i = 0; i < playersSorted.length; i++) {
+    groups[i % groups.length].push(playersSorted[i]);
+  }
+}
+
+
 
 export const generateTeams = () => {
   const playersPlaying = players.filter(player => document.querySelector(`input[name="${player.name}-is-playing"]`).checked);
-  const teams = pickTeams(playersPlaying);
+  const teams = createGroups(playersPlaying);
+  console.log(teams);
   createTeamsTable(teams);
 }
 
