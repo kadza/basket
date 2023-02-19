@@ -1,4 +1,4 @@
-const createTeams = require("./createTeams")
+import createTeams from "./createTeams.js"
 
 function assertTeams(teams, avgRatings) {
   teams.forEach((team, index) => {

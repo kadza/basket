@@ -30,7 +30,6 @@ function createTeams(players, numberOfTeams) {
     const sortedTeamsByNumberOfPlayers = notFullTeams.sort((a, b) => a.players.length - b.players.length)
     const teamsWithMinNumberOfPlayers = sortedTeamsByNumberOfPlayers.filter(team => team.players.length === sortedTeamsByNumberOfPlayers[0].players.length);
 
-    // check if teams have equal size, if not then add player to the team with smaller size
     if (teamsWithMinNumberOfPlayers.length > 1) {
       // filter teams with the smallest team size property from all teams with the smallest number of players
       const sortedTeamsBySize = teamsWithMinNumberOfPlayers.sort((a, b) => a.size - b.size)
@@ -57,4 +56,4 @@ function createTeams(players, numberOfTeams) {
   return teams;
 }
 
-module.exports = createTeams;
+export default createTeams;

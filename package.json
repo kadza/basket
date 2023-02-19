@@ -1,0 +1,24 @@
+{
+  "name": "basket",
+  "version": "1.0.0",
+  "description": "A Web app that creates teams for picked players",
+  "browser": "index.html",
+  "type": "module",
+  "scripts": {
+    "start": "http-server -p 8080",
+    "test": "node createTeams.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kadza/basket.git"
+  },
+  "author": "Lukasz Kujawiak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kadza/basket/issues"
+  },
+  "homepage": "https://github.com/kadza/basket#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
