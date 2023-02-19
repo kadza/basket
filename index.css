@@ -72,22 +72,43 @@ button {
     font-family: "Roboto Condensed", sans-serif;
     font-size: 0.875rem;
     cursor: pointer;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    font-size: 0.875rem;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+label {
+    font-size: 0.75rem;
 }
 
 .card {
     width: 90%;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 0.25rem;
     background-color: #fff;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
 }
 
 @media screen and (min-width: 768px) {
     .card {
         width: 50%;
     }
-}
 
-.card .card-content {
-    width: 100%;
-    gap: 0.5rem;
+    button {
+        width: 10rem;
+    }
+
+    select {
+        width: 10rem;
+    }
 }

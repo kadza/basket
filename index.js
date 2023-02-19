@@ -58,9 +58,9 @@ const createTeamsTable = (teams) => {
   dvTable.appendChild(table);
 }
 
-export const generateTeams = () => {
+export const generateTeams = (players, numberOfTeams) => {
   const playersPlaying = players.filter(player => document.querySelector(`input[name="${player.name}-is-playing"]`).checked);
-  const teams = createTeams(playersPlaying, 4);
+  const teams = createTeams(playersPlaying, numberOfTeams);
   console.log(teams);
   createTeamsTable(teams);
 }
@@ -69,4 +69,4 @@ export const generateTeams = () => {
 const players = await fetch("players.json").then(response => response.json());
 
 createPlayersTable(players);
-document.getElementById("submit").addEventListener("click", generateTeams);
+document.getElementById("submit").addEventListener("click", () => generateTeams(players, parseInt(document.getElementById("numberOfTeams").value)));
