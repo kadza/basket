@@ -69,8 +69,4 @@ export const generateTeams = () => {
 const players = await fetch("players.json").then(response => response.json());
 
 createPlayersTable(players);
-//on select all button click select all checkboxes
-document.getElementById("select-all").addEventListener("click", function () {
-  document.querySelectorAll('input[type="checkbox"]').forEach((el) => el.checked = true);
-});
 document.getElementById("submit").addEventListener("click", generateTeams);
