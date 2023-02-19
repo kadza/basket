@@ -14,13 +14,13 @@ function createEmptyTeams(numberOfPlayers, numberOfTeams) {
   return teams;
 }
 
-function createTeams(players) {
+function createTeams(players, numberOfTeams) {
   //sort players by rating descending
   const playersSorted = players.sort((a, b) => b.rating - a.rating);
 
-  const teams = createEmptyTeams(players.length, 4);
+  const teams = createEmptyTeams(players.length, numberOfTeams);
   // get team min size
-  const minTeamSize = Math.min(teams[0].size, teams[1].size, teams[2].size, teams[3].size);
+  const minTeamSize = Math.min(...teams.map(team => team.size));
 
   for (let i = 0; i < playersSorted.length; i++) {
     //filter teams with the number of players pushed is less than the team size

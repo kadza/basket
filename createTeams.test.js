@@ -1,31 +1,23 @@
 const createTeams = require("./createTeams")
 
-function assertTeams(teams, avgRating1, avgRating2, avgRating3, avgRating4) {
-  //console errors if teams avgRating up to 2 decimal places is not equal to 6.93, 6.73, 6.73, 6.73
-  if (teams[0].avgRating.toFixed(2) !== avgRating1.toString()) {
-    console.error(`!!! First team avgRating is not equal to ${avgRating1}`)
-  }
-  if (teams[1].avgRating.toFixed(2) !== avgRating2.toString()) {
-    console.error(`!!! Second team avgRating is not equal to ${avgRating2}`)
-  }
-  if (teams[2].avgRating.toFixed(2) !== avgRating3.toString()) {
-    console.error(`!!! Third team avgRating is not equal to ${avgRating3}`)
-  }
-  if (teams[3].avgRating.toFixed(2) !== avgRating4.toString()) {
-    console.error(`!!! Fourth team avgRating is not equal to ${avgRating4}`)
-  }
+function assertTeams(teams, avgRatings) {
+  teams.forEach((team, index) => {
+    if (team.avgRating.toFixed(2) !== avgRatings[index].toFixed(2)) {
+      console.error(`!!! Team ${index + 1} avgRating ${team.avgRating.toFixed(2)} is not equal to ${avgRatings[index]}`)
+    }
+  })
 }
 
 function logTeams(teams) {
   console.table(teams.map(team => {
     return {
-      avgRating: team.avgRating,
+      avgRating: Number(team.avgRating.toFixed(2)),
       players: team.players.map(player => `${player.name} (${player.rating})`).join(", ")
     }
   }))
 }
 
-function players_16() {
+function players_12() {
   const players = [
     {
       "id": "maks",
@@ -89,13 +81,13 @@ function players_16() {
     }
   ]
 
-  const teams = createTeams(players)
+  const teams = createTeams(players, 4)
 
   logTeams(teams)
-  assertTeams(teams, 6.93, 6.73, 6.73, 6.73)
+  assertTeams(teams, [6.93, 6.73, 6.73, 6.73])
 }
 
-function players_15() {
+function players_11() {
   const players = [
     {
       "id": "maks",
@@ -154,11 +146,11 @@ function players_15() {
     }
   ]
 
-  const teams = createTeams(players)
+  const teams = createTeams(players, 4)
 
   logTeams(teams)
-  assertTeams(teams, 6.93, 6.73, 6.73, 6.73)
+  assertTeams(teams, [6.27, 6.67, 6.47, 7.90])
 }
 
-players_15()
-players_16()
+players_11()
+players_12()
