@@ -5,25 +5,27 @@ const createPlayersTable = (players) => {
   var table = document.createElement("table");
   var row = table.insertRow(-1);
   var headerCell = document.createElement("TH");
+  headerCell.innerHTML = "Gra?";
+  row.appendChild(headerCell);
+  headerCell = document.createElement("TH");
   headerCell.innerHTML = "Imię";
   row.appendChild(headerCell);
   headerCell = document.createElement("TH");
   headerCell.innerHTML = "Ocena";
   row.appendChild(headerCell);
-  headerCell = document.createElement("TH");
-  headerCell.innerHTML = "Gra?";
-  row.appendChild(headerCell);
   for (var i = 0; i < players.length; i++) {
     row = table.insertRow(-1);
-    var cell = row.insertCell(-1);
-    cell.innerHTML = players[i].name;
-    cell = row.insertCell(-1);
-    cell.innerHTML = players[i].rating;
-    cell = row.insertCell(-1);
     var element = document.createElement("input");
     element.type = "checkbox";
     element.name = `${players[i].name}-is-playing`;
+    var cell = row.insertCell(-1);
     cell.appendChild(element);
+
+    cell = row.insertCell(-1);
+    cell.innerHTML = players[i].name;
+
+    cell = row.insertCell(-1);
+    cell.innerHTML = players[i].rating;
   }
   var dvTable = document.getElementById("dvTable");
   dvTable.innerHTML = "";
