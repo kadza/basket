@@ -2,32 +2,32 @@
   {
     "id": "karol",
     "name": "Karol",
-    "rating": 8
+    "rating": 7.9
   },
   {
     "id": "maks",
     "name": "Maks",
-    "rating": 7.8
+    "rating": 8.0
   },
   {
     "id": "dominik_dz",
     "name": "Dominik Dz",
-    "rating": 7.8
+    "rating": 8.2
   },
   {
     "id": "tomek_sz",
     "name": "Tomek Sz",
-    "rating": 7.8
+    "rating": 7.6
   },
   {
     "id": "mj",
     "name": "MJ",
-    "rating": 7.8
+    "rating": 8.0
   },
   {
     "id": "lukasz",
     "name": "Lukasz",
-    "rating": 7.6
+    "rating": 7.8
   },
   {
     "id": "lucanos",
@@ -47,81 +47,76 @@
   {
     "id": "filip",
     "name": "Filip",
-    "rating": 7.4
+    "rating": 7.0
   },
   {
     "id": "darek",
     "name": "Darek",
-    "rating": 7.2
+    "rating": 7.3
   },
   {
     "id": "michal_b",
     "name": "Michał B",
-    "rating": 7.2
+    "rating": 6.8
   },
   {
     "id": "dudek",
     "name": "Dudkek",
-    "rating": 7
+    "rating": 6.8
   },
   {
     "id": "pawel_k",
     "name": "Paweł K",
-    "rating": 7
+    "rating": 7.2
   },
   {
     "id": "czyzu",
     "name": "Czyzu",
-    "rating": 6.8
+    "rating": 6.3
   },
   {
     "id": "patryk",
     "name": "Patryk",
-    "rating": 6.4
+    "rating": 6.3
   },
   {
     "id": "rafal",
     "name": "Rafał",
-    "rating": 6.2
+    "rating": 6.4
   },
   {
     "id": "piotrek_g",
     "name": "Piotrek",
-    "rating": 6
+    "rating": 5.8
   },
   {
     "id": "michal",
     "name": "Michał",
-    "rating": 6
+    "rating": 5.6
   },
   {
     "id": "igor",
     "name": "Igor",
-    "rating": 6
+    "rating": 5.9
   },
   {
     "id": "andrzej",
     "name": "Andrzej",
-    "rating": 5.8
+    "rating": 5.3
   },
   {
     "id": "olek",
     "name": "Olek",
-    "rating": 5.6
-  },
-  {
-    "id": "pawel_f",
-    "name": "Paweł F",
-    "rating": 5
+    "rating": 5.2
   },
   {
     "id": "mariusz",
     "name": "Mariusz",
-    "rating": 4.8
+    "rating": 4.1
   },
   {
     "id": "grzesiek",
     "name": "Grzesiek",
-    "rating": 3
+    "rating": 3.1
   }
 ]
