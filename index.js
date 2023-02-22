@@ -2,6 +2,7 @@
 import createTeams from "./createTeams.js";
 
 const createPlayersTable = (players) => {
+  players = players.sort((a, b) => b.rating - a.rating);
   var table = document.createElement("table");
   var row = table.insertRow(-1);
   var headerCell = document.createElement("TH");
