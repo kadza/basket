@@ -8,7 +8,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     background-color: #ededed;
@@ -67,7 +66,6 @@ table tr:last-child td {
 button {
     padding: 0.5rem;
     border-radius: 0.25rem;
-    background-color: #fff;
     color: #000;
     border: 1px solid #a4a2a2;
     font-family: "Roboto Condensed", sans-serif;
@@ -91,6 +89,10 @@ label {
     padding: 1rem;
     border-radius: 0.25rem;
     background-color: #fff;
+}
+
+.last-card {
+    margin-bottom: 2rem;
 }
 
 .card-content {
