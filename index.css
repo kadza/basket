@@ -66,6 +66,7 @@ table tr:last-child td {
 button {
     padding: 0.5rem;
     border-radius: 0.25rem;
+    background-color: #fff;
     color: #000;
     border: 1px solid #a4a2a2;
     font-family: "Roboto Condensed", sans-serif;
@@ -92,7 +93,7 @@ label {
 }
 
 .last-card {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .card-content {
