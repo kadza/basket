@@ -66,6 +66,7 @@ export const generateTeams = (players, numberOfTeams) => {
   createTeamsTable(teams);
 }
 
+//add error handling and loading indicator
 const response = await fetch("https://opensheet.elk.sh/1YhSB3nBayF7bAMrUyPJPfOnR0QIC1ptdnoqRscz6xYY/tech")
 const json = await response.json()
 const players = json.map(player => ({ id: player.id, name: player.name, rating: Number.parseFloat(player.avg.replace(",", ".")) }));
