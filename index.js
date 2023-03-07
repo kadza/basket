@@ -66,8 +66,9 @@ export const generateTeams = (players, numberOfTeams) => {
   createTeamsTable(teams);
 }
 
-// async fetch players from json file
-const players = await fetch("players.json").then(response => response.json());
+const response = await fetch("https://opensheet.elk.sh/1YhSB3nBayF7bAMrUyPJPfOnR0QIC1ptdnoqRscz6xYY/tech")
+const json = await response.json()
+const players = json.map(player => ({ id: player.id, name: player.name, rating: Number.parseFloat(player.avg.replace(",", ".")) }));
 
 createPlayersTable(players);
 document.getElementById("submit").addEventListener("click", () => generateTeams(players, parseInt(document.getElementById("numberOfTeams").value)));
