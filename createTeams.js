@@ -7,18 +7,34 @@ function createEmptyTeams(numberOfPlayers, numberOfTeams) {
     teams.push({
       players: [],
       size: teamSize + (i < numberOfTeamsWithExtraPlayer ? 1 : 0),
-      avgRating: 0
+      avgRating: 0,
+      id: i + 1
     });
   }
 
   return teams;
 }
 
-function createTeams(players, numberOfTeams) {
+//preassignedPlayersTeams = [{playerId: 1, teamId: 1}, {playerId: 2, teamId: 2}]
+function createTeams(players, numberOfTeams, preassignedPlayersTeams = []) {
+
+  //filter players that are not preassigned to any team
+  const playersNotPreassigned = players.filter(player => !preassignedPlayersTeams.find(preassignedPlayer => preassignedPlayer.playerId === player.id));
+
   //sort players by rating descending
-  const playersSorted = players.sort((a, b) => b.rating - a.rating);
+  const playersSorted = playersNotPreassigned.sort((a, b) => b.rating - a.rating);
 
   const teams = createEmptyTeams(players.length, numberOfTeams);
+
+  //assign preassigned players to teams
+  preassignedPlayersTeams.forEach(preassignedPlayer => {
+    const team = teams.find(team => team.id === preassignedPlayer.teamId);
+    //find player by id
+    const player = players.find(player => player.id === preassignedPlayer.playerId);
+    team.players.push(player);
+    team.avgRating = (team.avgRating * (team.players.length - 1) + player.rating) / team.players.length;
+  });
+
   // get team min size
   const minTeamSize = Math.min(...teams.map(team => team.size));
 
