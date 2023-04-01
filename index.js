@@ -14,6 +14,12 @@ const createPlayersTable = (players) => {
   headerCell = document.createElement("TH");
   headerCell.innerHTML = "Ocena";
   row.appendChild(headerCell);
+
+  //add cell with initial team header
+  headerCell = document.createElement("TH");
+  headerCell.innerHTML = "Drużyna";
+  row.appendChild(headerCell);
+
   for (var i = 0; i < players.length; i++) {
     row = table.insertRow(-1);
     var element = document.createElement("input");
@@ -27,11 +33,50 @@ const createPlayersTable = (players) => {
 
     cell = row.insertCell(-1);
     cell.innerHTML = players[i].rating;
+
+    //add cell with initial team dropdown options should be either 2 teams or 4 teams depending on sleceted number of teams
+    cell = row.insertCell(-1);
+    var select = document.createElement("select");
+    select.name = `${players[i].name}-team`;
+    //get selected number of teams
+    var numberOfTeams = document.getElementById("numberOfTeams").value;
+    //add option for no team
+    var option = document.createElement("option");
+    option.value = 0;
+    option.text = "Dowolna";
+    select.appendChild(option);
+    //create options for teams
+    for (var j = 1; j <= numberOfTeams; j++) {
+      var option = document.createElement("option");
+      option.value = j;
+      option.text = `Drużyna ${j}`;
+      select.appendChild(option);
+    }
+    cell.appendChild(select);
   }
   var dvTable = document.getElementById("dvTable");
   dvTable.innerHTML = "";
   dvTable.appendChild(table);
 }
+
+//on number of teams change update initial team dropdown options
+document.getElementById("numberOfTeams").addEventListener("change", () => {
+  const players = document.querySelectorAll("select[name$='-team']");
+  const numberOfTeams = document.getElementById("numberOfTeams").value;
+  players.forEach(player => {
+    player.innerHTML = "";
+    var option = document.createElement("option");
+    option.value = 0;
+    option.text = "Dowolna";
+    player.appendChild(option);
+    for (var j = 1; j <= numberOfTeams; j++) {
+      var option = document.createElement("option");
+      option.value = j;
+      option.text = `Drużyna ${j}`;
+      player.appendChild(option);
+    }
+  });
+});
 
 const createTeamsTable = (teams) => {
   var table = document.createElement("table");
