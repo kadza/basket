@@ -152,5 +152,142 @@ function players_11() {
   assertTeams(teams, [6.27, 6.67, 6.47, 7.90])
 }
 
-players_11()
-players_12()
+function players_12_preassigned() {
+  const players = [
+    {
+      "id": "maks",
+      "name": "Maks",
+      "rating": 8.4
+    },
+    {
+      "id": "karol",
+      "name": "Karol",
+      "rating": 8
+    },
+    {
+      "id": "dominik_dz",
+      "name": "Dominik Dz",
+      "rating": 7.8
+    },
+    {
+      "id": "tomek",
+      "name": "Tomek",
+      "rating": 7.8
+    },
+    {
+      "id": "filip",
+      "name": "Filip",
+      "rating": 7.4
+    },
+    {
+      "id": "lukasz",
+      "name": "Lukasz",
+      "rating": 7.4
+    },
+    {
+      "id": "dominik_p",
+      "name": "Dominik P",
+      "rating": 7.4
+    },
+    {
+      "id": "pawel_k",
+      "name": "Paweł K",
+      "rating": 6.6
+    },
+    {
+      "id": "patryk",
+      "name": "Patryk",
+      "rating": 5.8
+    },
+    {
+      "id": "andrzej",
+      "name": "Andrzej",
+      "rating": 5
+    },
+    {
+      "id": "pawel_f",
+      "name": "Paweł F",
+      "rating": 5
+    },
+    {
+      "id": "mariusz",
+      "name": "Mariusz",
+      "rating": 4.8
+    }
+  ]
+
+  const teams = createTeams(players, 4, [{ playerId: "mariusz", teamId: 1 }, { playerId: "pawel_f", teamId: 2 }])
+
+  logTeams(teams)
+  assertTeams(teams, [6.67, 6.47, 6.93, 7.07])
+}
+
+function players_11_preassigned() {
+  const players = [
+    {
+      "id": "maks",
+      "name": "Maks",
+      "rating": 8.4
+    },
+    {
+      "id": "karol",
+      "name": "Karol",
+      "rating": 8
+    },
+    {
+      "id": "dominik_dz",
+      "name": "Dominik Dz",
+      "rating": 7.8
+    },
+    {
+      "id": "tomek",
+      "name": "Tomek",
+      "rating": 7.8
+    },
+    {
+      "id": "filip",
+      "name": "Filip",
+      "rating": 7.4
+    },
+    {
+      "id": "lukasz",
+      "name": "Lukasz",
+      "rating": 7.4
+    },
+    {
+      "id": "dominik_p",
+      "name": "Dominik P",
+      "rating": 7.4
+    },
+    {
+      "id": "pawel_k",
+      "name": "Paweł K",
+      "rating": 6.6
+    },
+    {
+      "id": "patryk",
+      "name": "Patryk",
+      "rating": 5.8
+    },
+    {
+      "id": "andrzej",
+      "name": "Andrzej",
+      "rating": 5
+    },
+    {
+      "id": "pawel_f",
+      "name": "Paweł F",
+      "rating": 5
+    },
+  ]
+
+  const teams = createTeams(players, 4, [{ playerId: "karol", teamId: 4 }, { playerId: "maks", teamId: 4 }])
+
+  logTeams(teams)
+  assertTeams(teams, [6.67, 6.47, 6.93, 7.07])
+}
+
+// players_11()
+// players_12()
+// players_12_preassigned()
+players_11_preassigned()

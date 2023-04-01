@@ -24,7 +24,7 @@ const createPlayersTable = (players) => {
     row = table.insertRow(-1);
     var element = document.createElement("input");
     element.type = "checkbox";
-    element.name = `${players[i].name}-is-playing`;
+    element.name = `${players[i].id}-is-playing`;
     var cell = row.insertCell(-1);
     cell.appendChild(element);
 
@@ -34,10 +34,10 @@ const createPlayersTable = (players) => {
     cell = row.insertCell(-1);
     cell.innerHTML = players[i].rating;
 
-    //add cell with initial team dropdown options should be either 2 teams or 4 teams depending on sleceted number of teams
+    //add cell with initial team dropdown options should be either 2 teams or 4 teams depending on selected number of teams
     cell = row.insertCell(-1);
     var select = document.createElement("select");
-    select.name = `${players[i].name}-team`;
+    select.name = `${players[i].id}-team`;
     //get selected number of teams
     var numberOfTeams = document.getElementById("numberOfTeams").value;
     //add option for no team
@@ -105,8 +105,16 @@ const createTeamsTable = (teams) => {
 }
 
 export const generateTeams = (players, numberOfTeams) => {
-  const playersPlaying = players.filter(player => document.querySelector(`input[name="${player.name}-is-playing"]`).checked);
-  const teams = createTeams(playersPlaying, numberOfTeams);
+  //get preassigned player ids with their teams
+  let preassignedPlayers = Array.from(document.querySelectorAll("select[name$='-team']")).map(player => ({ playerId: player.name.split("-")[0], teamId: parseInt(player.value) }));
+  // filter out from preassigned players those that are not playing and have team with id 0
+  preassignedPlayers = preassignedPlayers.filter(player => player.teamId !== 0).filter(player => document.querySelector(`input[name="${player.playerId}-is-playing"]`).checked);
+
+
+  const playersPlaying = players.filter(player => document.querySelector(`input[name="${player.id}-is-playing"]`).checked);
+
+
+  const teams = createTeams(playersPlaying, numberOfTeams, preassignedPlayers);
   console.log(teams);
   createTeamsTable(teams);
 }
