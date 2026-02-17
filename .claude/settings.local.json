@@ -6,7 +6,13 @@
       "Bash(git worktree:*)",
       "Bash(npm test:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git -C /workspaces/basket worktree add /workspaces/basket/.worktrees/test-worktree -b test-worktree)",
+      "Bash(git -C /workspaces/basket status)",
+      "Bash(git -C /workspaces/basket diff:*)",
+      "Bash(git -C /workspaces/basket log --oneline -5)",
+      "Bash(git -C /workspaces/basket add .gitignore CLAUDE.md)",
+      "Bash(git -C:*)"
     ]
   }
 }
