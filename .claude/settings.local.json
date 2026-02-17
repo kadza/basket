@@ -12,7 +12,13 @@
       "Bash(git -C /workspaces/basket diff:*)",
       "Bash(git -C /workspaces/basket log --oneline -5)",
       "Bash(git -C /workspaces/basket add .gitignore CLAUDE.md)",
-      "Bash(git -C:*)"
+      "Bash(git -C:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(git rebase:*)",
+      "Bash(git merge:*)",
+      "Bash(git branch:*)",
+      "Bash(npx eslint:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }
