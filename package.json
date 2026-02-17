@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "http-server -p 8080",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' npx jest",
     "lint": "eslint ."
   },
   "repository": {
