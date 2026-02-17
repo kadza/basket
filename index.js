@@ -1,6 +1,37 @@
 
 import createTeams from "./createTeams.js";
 
+const addPlayerRow = (player, table) => {
+  var numberOfTeams = document.getElementById("numberOfTeams").value;
+  var row = table.insertRow(-1);
+  var element = document.createElement("input");
+  element.type = "checkbox";
+  element.name = `${player.id}-is-playing`;
+  var cell = row.insertCell(-1);
+  cell.appendChild(element);
+
+  cell = row.insertCell(-1);
+  cell.innerHTML = player.name;
+
+  cell = row.insertCell(-1);
+  cell.innerHTML = player.rating;
+
+  cell = row.insertCell(-1);
+  var select = document.createElement("select");
+  select.name = `${player.id}-team`;
+  var option = document.createElement("option");
+  option.value = 0;
+  option.text = "Dowolna";
+  select.appendChild(option);
+  for (var j = 1; j <= numberOfTeams; j++) {
+    var teamOption = document.createElement("option");
+    teamOption.value = j;
+    teamOption.text = `Drużyna ${j}`;
+    select.appendChild(teamOption);
+  }
+  cell.appendChild(select);
+};
+
 const createPlayersTable = (players) => {
   players = players.sort((a, b) => b.rating - a.rating);
   var table = document.createElement("table");
@@ -21,38 +52,7 @@ const createPlayersTable = (players) => {
   row.appendChild(headerCell);
 
   for (var i = 0; i < players.length; i++) {
-    row = table.insertRow(-1);
-    var element = document.createElement("input");
-    element.type = "checkbox";
-    element.name = `${players[i].id}-is-playing`;
-    var cell = row.insertCell(-1);
-    cell.appendChild(element);
-
-    cell = row.insertCell(-1);
-    cell.innerHTML = players[i].name;
-
-    cell = row.insertCell(-1);
-    cell.innerHTML = players[i].rating;
-
-    //add cell with initial team dropdown options should be either 2 teams or 4 teams depending on selected number of teams
-    cell = row.insertCell(-1);
-    var select = document.createElement("select");
-    select.name = `${players[i].id}-team`;
-    //get selected number of teams
-    var numberOfTeams = document.getElementById("numberOfTeams").value;
-    //add option for no team
-    var option = document.createElement("option");
-    option.value = 0;
-    option.text = "Dowolna";
-    select.appendChild(option);
-    //create options for teams
-    for (var j = 1; j <= numberOfTeams; j++) {
-      var teamOption = document.createElement("option");
-      teamOption.value = j;
-      teamOption.text = `Drużyna ${j}`;
-      select.appendChild(teamOption);
-    }
-    cell.appendChild(select);
+    addPlayerRow(players[i], table);
   }
   var dvTable = document.getElementById("dvTable");
   dvTable.innerHTML = "";
@@ -122,7 +122,21 @@ export const generateTeams = (players, numberOfTeams) => {
 //add error handling and loading indicator
 const response = await fetch("https://opensheet.elk.sh/1YhSB3nBayF7bAMrUyPJPfOnR0QIC1ptdnoqRscz6xYY/tech")
 const json = await response.json()
-const players = json.map(player => ({ id: player.id, name: player.name, rating: Number.parseFloat(player.avg.replace(",", ".")) }));
+let players = json.map(player => ({ id: player.id, name: player.name, rating: Number.parseFloat(player.avg.replace(",", ".")) }));
 
 createPlayersTable(players);
 document.getElementById("submit").addEventListener("click", () => generateTeams(players, parseInt(document.getElementById("numberOfTeams").value)));
+
+document.getElementById("addTempPlayer").addEventListener("click", () => {
+  const nameInput = document.getElementById("tempPlayerName");
+  const ratingInput = document.getElementById("tempPlayerRating");
+  const name = nameInput.value.trim();
+  const rating = parseFloat(ratingInput.value);
+  if (!name || isNaN(rating)) return;
+  const player = { id: `temp-${Date.now()}`, name, rating };
+  players.push(player);
+  const table = document.querySelector("#dvTable table");
+  addPlayerRow(player, table);
+  nameInput.value = "";
+  ratingInput.value = "";
+});
