@@ -47,10 +47,10 @@ const createPlayersTable = (players) => {
     select.appendChild(option);
     //create options for teams
     for (var j = 1; j <= numberOfTeams; j++) {
-      var option = document.createElement("option");
-      option.value = j;
-      option.text = `Drużyna ${j}`;
-      select.appendChild(option);
+      var teamOption = document.createElement("option");
+      teamOption.value = j;
+      teamOption.text = `Drużyna ${j}`;
+      select.appendChild(teamOption);
     }
     cell.appendChild(select);
   }
@@ -70,10 +70,10 @@ document.getElementById("numberOfTeams").addEventListener("change", () => {
     option.text = "Dowolna";
     player.appendChild(option);
     for (var j = 1; j <= numberOfTeams; j++) {
-      var option = document.createElement("option");
-      option.value = j;
-      option.text = `Drużyna ${j}`;
-      player.appendChild(option);
+      var teamOption = document.createElement("option");
+      teamOption.value = j;
+      teamOption.text = `Drużyna ${j}`;
+      player.appendChild(teamOption);
     }
   });
 });

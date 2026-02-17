@@ -287,7 +287,7 @@ function players_11_preassigned() {
   assertTeams(teams, [6.67, 6.47, 6.93, 7.07])
 }
 
-// players_11()
-// players_12()
-// players_12_preassigned()
+players_11()
+players_12()
+players_12_preassigned()
 players_11_preassigned()

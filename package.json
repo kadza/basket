@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "http-server -p 8080",
-    "test": "node createTeams.test.js"
+    "test": "node createTeams.test.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/kadza/basket#readme",
   "devDependencies": {
+    "eslint": "^9.39.2",
     "http-server": "^14.1.1"
   }
 }

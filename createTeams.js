@@ -35,9 +35,6 @@ function createTeams(players, numberOfTeams, preassignedPlayersTeams = []) {
     team.avgRating = (team.avgRating * (team.players.length - 1) + player.rating) / team.players.length;
   });
 
-  // get team min size
-  const minTeamSize = Math.min(...teams.map(team => team.size));
-
   for (let i = 0; i < playersSorted.length; i++) {
     //filter teams with the number of players pushed is less than the team size
     const notFullTeams = teams.filter(team => team.players.length < team.size).sort((a, b) => a.avgRating - b.avgRating);
