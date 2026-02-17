@@ -39,7 +39,13 @@ Use a git worktree so multiple features can be developed in parallel:
 2. Work inside that worktree directory for all file edits and git operations.
 3. `.worktrees/` is in `.gitignore` — never commit worktree contents to the main repo.
 4. Git commands (commit, push, branch) must run **inside the container** — host paths don't resolve correctly for worktree git metadata.
-5. When done with a feature (merged or abandoned), clean up:
+5. To merge back into master, always rebase then fast-forward merge to keep history linear (no merge commits):
+   ```
+   git rebase master        # from the feature branch
+   git checkout master
+   git merge --ff-only <feature-name>
+   ```
+6. When done with a feature (merged or abandoned), clean up:
    ```
    git worktree remove /workspaces/basket/.worktrees/<feature-name>
    ```
