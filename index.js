@@ -115,7 +115,7 @@ const createTeamsTable = (teams, showKondycja = false) => {
 
 export const generateTeams = (players, numberOfTeams) => {
   //get preassigned player ids with their teams
-  let preassignedPlayers = Array.from(document.querySelectorAll("select[name$='-team']")).map(player => ({ playerId: player.name.split("-")[0], teamId: parseInt(player.value) }));
+  let preassignedPlayers = Array.from(document.querySelectorAll("select[name$='-team']")).map(player => ({ playerId: player.name.replace(/-team$/, ''), teamId: parseInt(player.value) }));
   // filter out from preassigned players those that are not playing and have team with id 0
   preassignedPlayers = preassignedPlayers.filter(player => player.teamId !== 0).filter(player => document.querySelector(`input[name="${player.playerId}-is-playing"]`).checked);
 
