@@ -140,13 +140,16 @@ document.getElementById("submit").addEventListener("click", () => generateTeams(
 document.getElementById("addTempPlayer").addEventListener("click", () => {
   const nameInput = document.getElementById("tempPlayerName");
   const ratingInput = document.getElementById("tempPlayerRating");
+  const kondycjaInput = document.getElementById("tempPlayerKondycja");
   const name = nameInput.value.trim();
   const rating = parseFloat(ratingInput.value);
+  const kondycja = parseFloat(kondycjaInput.value) || 0;
   if (!name || isNaN(rating)) return;
-  const player = { id: `temp-${Date.now()}`, name, rating };
+  const player = { id: `temp-${Date.now()}`, name, rating, kondycja };
   players.push(player);
   const table = document.querySelector("#dvTable table");
   addPlayerRow(player, table);
   nameInput.value = "";
   ratingInput.value = "";
+  kondycjaInput.value = "";
 });
