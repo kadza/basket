@@ -78,7 +78,7 @@ document.getElementById("numberOfTeams").addEventListener("change", () => {
   });
 });
 
-const createTeamsTable = (teams) => {
+const createTeamsTable = (teams, showKondycja = false) => {
   var table = document.createElement("table");
   var row = table.insertRow(-1);
   var headerCell = document.createElement("TH");
@@ -87,6 +87,11 @@ const createTeamsTable = (teams) => {
   headerCell = document.createElement("TH");
   headerCell.innerHTML = "Średnia ocena";
   row.appendChild(headerCell);
+  if (showKondycja) {
+    headerCell = document.createElement("TH");
+    headerCell.innerHTML = "Śr. kondycja";
+    row.appendChild(headerCell);
+  }
   headerCell = document.createElement("TH");
   headerCell.innerHTML = "Gracze";
   row.appendChild(headerCell);
@@ -96,6 +101,10 @@ const createTeamsTable = (teams) => {
     cell.innerHTML = i + 1;
     cell = row.insertCell(-1);
     cell.innerHTML = teams[i].avgRating.toFixed(2);
+    if (showKondycja) {
+      cell = row.insertCell(-1);
+      cell.innerHTML = (teams[i].avgKondycja || 0).toFixed(2);
+    }
     cell = row.insertCell(-1);
     cell.innerHTML = teams[i].players.map(player => `${player.name} (${player.rating})`).join(", ");
   }
@@ -114,15 +123,16 @@ export const generateTeams = (players, numberOfTeams) => {
   const playersPlaying = players.filter(player => document.querySelector(`input[name="${player.id}-is-playing"]`).checked);
 
 
-  const teams = createTeams(playersPlaying, numberOfTeams, preassignedPlayers);
+  const balanceKondycja = document.getElementById("balanceKondycja").checked;
+  const teams = createTeams(playersPlaying, numberOfTeams, preassignedPlayers, { balanceKondycja });
   console.log(teams);
-  createTeamsTable(teams);
+  createTeamsTable(teams, balanceKondycja);
 }
 
 //add error handling and loading indicator
 const response = await fetch("https://opensheet.elk.sh/1YhSB3nBayF7bAMrUyPJPfOnR0QIC1ptdnoqRscz6xYY/tech")
 const json = await response.json()
-let players = json.map(player => ({ id: player.id, name: player.name, rating: Number.parseFloat(player.avg.replace(",", ".")) }));
+let players = json.map(player => ({ id: player.id, name: player.name, rating: Number.parseFloat(player.avg.replace(",", ".")), kondycja: player.kondycja ? Number.parseFloat(String(player.kondycja).replace(",", ".")) : 0 }));
 
 createPlayersTable(players);
 document.getElementById("submit").addEventListener("click", () => generateTeams(players, parseInt(document.getElementById("numberOfTeams").value)));
