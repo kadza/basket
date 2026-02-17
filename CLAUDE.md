@@ -27,8 +27,10 @@ Web app that creates balanced basketball teams from a pool of players based on s
 - Tests use a simple custom runner with `console.table()` output (no test framework)
 - UI is built with direct DOM manipulation (no virtual DOM or templating)
 
-## Worktree Workflow (New Features)
-When starting a new feature, always use a git worktree so multiple features can be developed in parallel:
+## Worktree Workflow (ALL Changes)
+**Important: Always use the worktree workflow for ALL changes, no matter how small — even one-line fixes. No exceptions.**
+
+Use a git worktree so multiple features can be developed in parallel:
 
 1. Create the worktree under the mounted volume:
    ```
