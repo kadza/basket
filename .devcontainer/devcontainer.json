@@ -1,0 +1,7 @@
+{
+  "name": "basket",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:dev-24",
+  "postCreateCommand": "pnpm config set store-dir ~/.pnpm-store",
+  "forwardPorts": [8080],
+  "runArgs": ["--name", "basket"]
+}
