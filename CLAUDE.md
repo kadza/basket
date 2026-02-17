@@ -27,5 +27,20 @@ Web app that creates balanced basketball teams from a pool of players based on s
 - Tests use a simple custom runner with `console.table()` output (no test framework)
 - UI is built with direct DOM manipulation (no virtual DOM or templating)
 
+## Worktree Workflow (New Features)
+When starting a new feature, always use a git worktree so multiple features can be developed in parallel:
+
+1. Create the worktree under the mounted volume:
+   ```
+   git worktree add /workspaces/basket/.worktrees/<feature-name> -b <feature-name>
+   ```
+2. Work inside that worktree directory for all file edits and git operations.
+3. `.worktrees/` is in `.gitignore` — never commit worktree contents to the main repo.
+4. Git commands (commit, push, branch) must run **inside the container** — host paths don't resolve correctly for worktree git metadata.
+5. When done with a feature (merged or abandoned), clean up:
+   ```
+   git worktree remove /workspaces/basket/.worktrees/<feature-name>
+   ```
+
 ## Deployment
 Hosted on GitHub Pages at https://kadza.github.io/basket/
