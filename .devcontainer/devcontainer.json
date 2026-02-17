@@ -1,7 +1,7 @@
 {
   "name": "basket",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:dev-24",
-  "postCreateCommand": "pnpm config set store-dir ~/.pnpm-store",
+  "postCreateCommand": "pnpm config set store-dir ~/.pnpm-store && npm install -g @anthropic-ai/claude-code",
   "forwardPorts": [8080],
   "runArgs": ["--name", "basket"]
 }
